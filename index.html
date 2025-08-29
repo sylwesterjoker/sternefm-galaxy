@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>STERNE FM – Kokpit Galaktyczny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      font-family: 'Orbitron', sans-serif;
+      color: #0ff;
+    }
+    #hud {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      max-width: 320px;
+    }
+    #hud h1 {
+      font-family: 'Audiowide', cursive;
+      margin-bottom: 10px;
+    }
+    audio {
+      width: 100%;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    canvas#bg {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .live-indicator {
+      display: inline-block;
+      background-color: red;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      animation: pulse 1s infinite;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .button {
+      background-color: #0ff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background-color: #fff;
+    }
+    #quiz-result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div id="hud">
+    <h1>STERNE FM 🚀</h1>
+    <p>Transmisja z pokładu statku – mijamy Marsa, komety, czarne dziury i galaktyki...</p>
+    <audio controls autoplay>
+      <source src="https://s41.myradiostream.com:39624/stream" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzacza audio.
+    </audio>
+    <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
+    <button class="button" onclick="showResult()">🧠 Quiz galaktyczny</button>
+    <div id="quiz-result"></div>
+    <button class="button" onclick="location.href='#schedule'">🪐 Zobacz ramówkę</button>
+  </div>
+
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg') });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const sunLight = new THREE.PointLight(0xffcc66, 2, 200);
+    sunLight.position.set(0, 0, 50);
+    scene.add(sunLight);
+
+    const starGeo = new THREE.SphereGeometry(0.1, 24, 24);
+    const starMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    for (let i = 0; i < 300; i++) {
+      const star = new THREE.Mesh(starGeo, starMat);
+      star.position.set(
+        (Math.random() - 0.5) * 200,
+        (Math.random() - 0.5) * 200,
+        (Math.random() - 0.5) * 200
+      );
+      scene.add(star);
+    }
+
+    const loader = new THREE.TextureLoader();
+    const objects = [];
+
+    function createObject(textureURL, size, x, y, z, speed) {
+      const texture = loader.load(textureURL);
+      const geometry = new THREE.SphereGeometry(size, 32, 32);
+      const material = new THREE.MeshStandardMaterial({ map: texture });
+      const obj = new THREE.Mesh(geometry, material);
+      obj.position.set(x, y, z);
+      obj.userData = { speed };
+      scene.add(obj);
+      objects.push(obj);
+    }
+
+    // Planety i obiekty galaktyczne
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/mars.jpg', 2, 10, 0, -60, 0.2);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/jupiter.jpg', 3, -15, 5, -80, 0.15);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/earth.jpg', 1.5, 5, -3, -100, 0.1);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/comet.jpg', 1, -8, 2, -120, 0.25);
+    createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -90, 0.05);
+    createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -70, 0.02);
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -100, 0.03);
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -110, 0.04);
+
+    camera.position.z = 5;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      objects.forEach(obj => {
+        obj.position.z += obj.userData.speed;
+        obj.rotation.y += 0.01;
+        if (obj.position.z > 10) obj.position.z = -150;
+      });
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function showResult() {
+      const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk"];
+      const result = galaxies[Math.floor(Math.random() * galaxies.length)];
+      document.getElementById("quiz-result").textContent = "Twoja galaktyka to: " + result;
+    }
+  </script>
+</body>
+</html>
