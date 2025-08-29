@@ -94,6 +94,7 @@
       line-height: 1.5;
       color: #0ff;
       font-style: italic;
+      min-height: 60px;
     }
     .panel {
       margin-top: 20px;
@@ -108,6 +109,27 @@
       0% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
       100% { transform: translateY(0); }
+    }
+    #schedule {
+      margin: 60px auto;
+      max-width: 500px;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    #schedule h2 {
+      font-family: 'Audiowide', cursive;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #schedule ul {
+      list-style: none;
+      padding: 0;
+    }
+    #schedule li {
+      margin: 10px 0;
+      font-size: 1em;
     }
   </style>
 </head>
@@ -155,30 +177,34 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" class="planet" style="top: 300px; right: 80px;" title="Jowisz – Gigant gazowy">
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 100px; left: 150px;" title="Ziemia – Nasz dom wśród gwiazd">
 
+  <section id="schedule">
+    <h2>🪐 Ramówka STERNE FM</h2>
+    <ul>
+      <li>🌠 18:00 – Chillwave z orbity Neptuna</li>
+      <li>🛰️ 20:00 – Transmisja z Galaktyki X</li>
+      <li>🌌 22:00 – Ambient z mgławicy Oriona</li>
+    </ul>
+  </section>
+
   <script>
+    const messages = [
+      "🛸 Nadajemy z pokładu STERNE ONE. Przekraczamy pas asteroid.",
+      "🌌 Mgławica inspiracji po lewej burzy nasze zmysły.",
+      "📡 Sygnał z Galaktyki X odebrany. Kreatywność rośnie.",
+      "🌀 Wchodzimy w wymiar 6. Przygotujcie sensory."
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("transmission").textContent = messages[i];
+      i = (i + 1) % messages.length;
+    }, 10000);
+
     function showResult() {
       const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk", "Nebula Groove"];
       const result = galaxies[Math.floor(Math.random() * galaxies.length)];
       const resultBox = document.getElementById("quiz-result");
-      resultBox.textContent = "🌀 Twoja galaktyka to: " + result;
-      resultBox.style.animation = "pulse 1s infinite";
-    }
+      resultBox.textContent = "🌀 Twoja galaktyka to:
 
-    function activateWarp() {
-      document.getElementById("transmission").textContent = "⚡ Silniki warp aktywowane. Prędkość nadświetlna osiągnięta!";
-    }
-
-    function scanSector() {
-      document.getElementById("transmission").textContent = "🔍 Sektor zeskanowany. Wykryto pulsar i ślady życia.";
-    }
-
-    function enterDimension() {
-      document.getElementById("transmission").textContent = "🌀 Wchodzimy w wymiar 6. Kreatywność osiąga hiperprędkość!";
-      document.body.style.backgroundColor = "#111";
-    }
-  </script>
-</body>
-</html>
 
 
 
