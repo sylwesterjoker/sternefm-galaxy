@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top, #0b0c2a, #000);
+      background-color: #000;
       color: #0ff;
       overflow-x: hidden;
     }
@@ -17,19 +17,19 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Hubble_ultra_deep_field.jpg') repeat;
       background-size: cover;
-      animation: moveStars 120s linear infinite;
+      animation: moveStars 60s linear infinite;
       z-index: -1;
     }
     @keyframes moveStars {
       from { background-position: 0 0; }
-      to { background-position: -5000px 5000px; }
+      to { background-position: -3000px 3000px; }
     }
     .planet {
       width: 100px;
       position: absolute;
       animation: float 10s ease-in-out infinite;
+      cursor: pointer;
     }
     @keyframes float {
       0% { transform: translateY(0); }
@@ -81,7 +81,7 @@
       border-radius: 20px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 15px;
       transition: background 0.3s;
     }
     .button:hover {
@@ -99,10 +99,14 @@
       color: #0ff;
       font-style: italic;
     }
+    .panel {
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
+  <div class="stars" id="stars"></div>
   <header>
     <h1>STERNE FM 🚀</h1>
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
@@ -115,13 +119,14 @@
     </audio>
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
 
-    <div class="transmission">
-      📡 „Halo Ziemia, tu STERNE ONE. Przekraczamy właśnie pas asteroid.  
-      Widoczność dobra, sygnał stabilny. Zabieramy was w podróż poza granice wyobraźni.”  
-      <br><br>
-      🪐 „Po lewej mijamy Marsa, po prawej Jowisza. Przed nami mgławica inspiracji.”  
-      <br><br>
-      🎧 „Załoga gotowa, silniki pulsują rytmem galaktyki. Słuchacze – zapnijcie pasy. Lecimy!”
+    <div class="transmission" id="transmission">
+      📡 „Tu STERNE ONE. Przekraczamy mgławicę inspiracji. Sygnał stabilny. Załoga gotowa.”
+    </div>
+
+    <div class="panel">
+      <button class="button" onclick="activateWarp()">⚡ Aktywuj silniki warp</button>
+      <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
+      <button class="button" onclick="openTransmission()">📡 Transmisja międzygwiezdna</button>
     </div>
 
     <button class="button" onclick="showResult()">🧠 Quiz galaktyczny</button>
@@ -134,10 +139,35 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 100px; left: 150px;" title="Ziemia – Nasz dom wśród gwiazd">
 
   <script>
+    const backgrounds = [
+      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Hubble_ultra_deep_field.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_4414_Spiral_Galaxy.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/2f/Black_Hole_Milkyway.jpg"
+    ];
+    let bgIndex = 0;
+    setInterval(() => {
+      bgIndex = (bgIndex + 1) % backgrounds.length;
+      document.getElementById("stars").style.backgroundImage = `url('${backgrounds[bgIndex]}')`;
+    }, 20000);
+
     function showResult() {
       const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk", "Nebula Groove"];
       const result = galaxies[Math.floor(Math.random() * galaxies.length)];
-      document.getElementById("quiz-result").textContent = "🌀 Twoja galaktyka to: " + result;
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.textContent = "🌀 Twoja galaktyka to: " + result;
+      resultBox.style.animation = "pulse 1s infinite";
+    }
+
+    function activateWarp() {
+      document.getElementById("transmission").textContent = "⚡ Silniki warp aktywowane. Prędkość nadświetlna osiągnięta!";
+    }
+
+    function scanSector() {
+      document.getElementById("transmission").textContent = "🔍 Sektor zeskanowany. Wykryto pulsar i ślady życia.";
+    }
+
+    function openTransmission() {
+      document.getElementById("transmission").textContent = "📡 Transmisja międzygwiezdna otwarta. Połączenie z Galaktyką X nawiązane.";
     }
   </script>
 </body>
