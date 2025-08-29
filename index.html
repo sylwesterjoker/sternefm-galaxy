@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>STERNE FM – Gwiezdna Droga</title>
+  <title>STERNE FM – Transmisja z pokładu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap" rel="stylesheet" />
   <style>
@@ -12,13 +12,6 @@
       background: radial-gradient(circle at top, #0b0c2a, #000);
       color: #0ff;
       overflow-x: hidden;
-    }
-    header {
-      padding: 60px 20px;
-      text-align: center;
-    }
-    h1, h2 {
-      font-family: 'Audiowide', cursive;
     }
     .stars {
       position: fixed;
@@ -43,10 +36,18 @@
       50% { transform: translateY(-20px); }
       100% { transform: translateY(0); }
     }
+    header {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Audiowide', cursive;
+      font-size: 2.5em;
+    }
     .hud {
-      max-width: 400px;
+      max-width: 420px;
       margin: auto;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       padding: 20px;
       border: 2px solid #0ff;
       border-radius: 10px;
@@ -91,13 +92,20 @@
       font-weight: bold;
       color: #fff;
     }
+    .transmission {
+      margin-top: 20px;
+      font-size: 0.95em;
+      line-height: 1.5;
+      color: #0ff;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
   <div class="stars"></div>
   <header>
     <h1>STERNE FM 🚀</h1>
-    <p>Transmisja z pokładu statku – mijamy Marsa, komety, czarne dziury i galaktyki...</p>
+    <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
   </header>
 
   <div class="hud">
@@ -106,20 +114,30 @@
       Twoja przeglądarka nie obsługuje odtwarzacza audio.
     </audio>
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
+
+    <div class="transmission">
+      📡 „Halo Ziemia, tu STERNE ONE. Przekraczamy właśnie pas asteroid.  
+      Widoczność dobra, sygnał stabilny. Zabieramy was w podróż poza granice wyobraźni.”  
+      <br><br>
+      🪐 „Po lewej mijamy Marsa, po prawej Jowisza. Przed nami mgławica inspiracji.”  
+      <br><br>
+      🎧 „Załoga gotowa, silniki pulsują rytmem galaktyki. Słuchacze – zapnijcie pasy. Lecimy!”
+    </div>
+
     <button class="button" onclick="showResult()">🧠 Quiz galaktyczny</button>
     <div id="quiz-result"></div>
     <button class="button" onclick="location.href='#schedule'">🪐 Zobacz ramówkę</button>
   </div>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" class="planet" style="top: 200px; left: 50px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" class="planet" style="top: 300px; right: 80px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 100px; left: 150px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" class="planet" style="top: 200px; left: 50px;" title="Mars – Czerwona planeta">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" class="planet" style="top: 300px; right: 80px;" title="Jowisz – Gigant gazowy">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 100px; left: 150px;" title="Ziemia – Nasz dom wśród gwiazd">
 
   <script>
     function showResult() {
-      const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk"];
+      const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk", "Nebula Groove"];
       const result = galaxies[Math.floor(Math.random() * galaxies.length)];
-      document.getElementById("quiz-result").textContent = "Twoja galaktyka to: " + result;
+      document.getElementById("quiz-result").textContent = "🌀 Twoja galaktyka to: " + result;
     }
   </script>
 </body>
