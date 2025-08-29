@@ -24,13 +24,14 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      background: url('https://raw.githubusercontent.com/microsoft/codetour/main/assets/stars-bg.png') repeat;
-      animation: moveStars 60s linear infinite;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Hubble_ultra_deep_field.jpg') repeat;
+      background-size: cover;
+      animation: moveStars 120s linear infinite;
       z-index: -1;
     }
     @keyframes moveStars {
       from { background-position: 0 0; }
-      to { background-position: -10000px 10000px; }
+      to { background-position: -5000px 5000px; }
     }
     .planet {
       width: 100px;
@@ -110,9 +111,9 @@
     <button class="button" onclick="location.href='#schedule'">🪐 Zobacz ramówkę</button>
   </div>
 
-  <img src="https://threejsfundamentals.org/threejs/resources/images/planets/mars.jpg" class="planet" style="top: 200px; left: 50px;">
-  <img src="https://threejsfundamentals.org/threejs/resources/images/planets/jupiter.jpg" class="planet" style="top: 300px; right: 80px;">
-  <img src="https://threejsfundamentals.org/threejs/resources/images/planets/earth.jpg" class="planet" style="bottom: 100px; left: 150px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" class="planet" style="top: 200px; left: 50px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" class="planet" style="top: 300px; right: 80px;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 100px; left: 150px;">
 
   <script>
     function showResult() {
