@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>STERNE FM – Galactic Overdrive</title>
+  <title>STERNE FM – Supernova Horizon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap" rel="stylesheet" />
   <style>
@@ -22,11 +22,12 @@
     }
     .star {
       position: absolute;
-      width: 2px;
-      height: 2px;
+      width: 3px;
+      height: 3px;
       background: white;
       border-radius: 50%;
-      animation: fly 5s linear infinite;
+      opacity: 0.8;
+      animation: fly linear infinite;
     }
     @keyframes fly {
       0% { transform: translateY(0); opacity: 1; }
@@ -136,12 +137,12 @@
 <body>
   <div class="stars" id="stars"></div>
   <script>
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 120; i++) {
       const star = document.createElement('div');
       star.className = 'star';
       star.style.left = Math.random() * window.innerWidth + 'px';
       star.style.top = Math.random() * window.innerHeight + 'px';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      star.style.animationDuration = (Math.random() * 4 + 2) + 's';
       document.getElementById('stars').appendChild(star);
     }
   </script>
@@ -166,6 +167,8 @@
       <button class="button" onclick="activateWarp()">⚡ Aktywuj silniki warp</button>
       <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
       <button class="button" onclick="enterDimension()">🌀 Wejdź w wymiar 6</button>
+      <button class="button" onclick="activateSupernova()">🌟 Aktywuj Supernova</button>
+      <button class="button" onclick="activateNova()">🛰️ Transmisja Sterne Nova</button>
     </div>
 
     <button class="button" onclick="showResult()">🧠 Quiz galaktyczny</button>
@@ -191,7 +194,9 @@
       "🛸 Nadajemy z pokładu STERNE ONE. Przekraczamy pas asteroid.",
       "🌌 Mgławica inspiracji po lewej burzy nasze zmysły.",
       "📡 Sygnał z Galaktyki X odebrany. Kreatywność rośnie.",
-      "🌀 Wchodzimy w wymiar 6. Przygotujcie sensory."
+      "🌀 Wchodzimy w wymiar 6. Przygotujcie sensory.",
+      "🌟 Supernova Sterne aktywowana. Kreatywność eksploduje.",
+      "🛰️ Transmisja Sterne Nova rozpoczęta. Nadajemy z centrum galaktyki."
     ];
     let i = 0;
     setInterval(() => {
@@ -200,9 +205,8 @@
     }, 10000);
 
     function showResult() {
-      const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk", "Nebula Groove"];
-      const result = galaxies[Math.floor(Math.random() * galaxies.length)];
-      const resultBox =
+      const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "
+
 
 
 
