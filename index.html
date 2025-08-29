@@ -151,13 +151,11 @@
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
   </header>
 
-  <audio controls autoplay>
-  <source src="https://s41.myradiostream.com:39624/stream" type="audio/mpeg">
-  Twoja przeglądarka nie obsługuje odtwarzacza audio.
-</audio><audio controls autoplay>
-  <source src="http://s41.myradiostream.com:39624/stream" type="audio/mpeg">
-  Twoja przeglądarka nie obsługuje odtwarzacza audio.
-</audio>
+  <div class="hud">
+    <audio controls autoplay>
+      <source src="http://s41.myradiostream.com:39624/stream" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzacza audio.
+    </audio>
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
 
     <div class="transmission" id="transmission">
@@ -204,8 +202,7 @@
     function showResult() {
       const galaxies = ["Andromeda Bass", "Orion Chill", "Sirius Synthwave", "Cassiopeia Funk", "Nebula Groove"];
       const result = galaxies[Math.floor(Math.random() * galaxies.length)];
-      const resultBox = document.getElementById("quiz-result");
-      resultBox.textContent = "🌀 Twoja galaktyka to:
+      const resultBox =
 
 
 
