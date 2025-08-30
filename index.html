@@ -48,6 +48,22 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
+    @keyframes burst {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    .supernova {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #fff, #f0f);
+      border-radius: 50%;
+      animation: burst 2s ease-out infinite;
+      top: 200px;
+      left: 200px;
+      opacity: 0.5;
+      z-index: -1;
+    }
     img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
       animation: float 12s ease-in-out infinite;
     }
@@ -88,10 +104,7 @@
       margin-top: 40px;
       line-height: 1.6;
     }
-    body.light-mode .hud,
-    body.light-mode .poem,
-    body.light-mode .galaxy,
-    body.light-mode .starscape {
+    body.light-mode .hud, body.light-mode .poem, body.light-mode .galaxy, body.light-mode .starscape {
       background: rgba(255,255,255,0.8);
       border-color: #000;
     }
@@ -151,11 +164,39 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
   <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
+  <div class="supernova"></div>
 
   <header>
     <h1>STERNE FM 🚀</h1>
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
   </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Start</a></li>
+      <li><a href="galaktyki.html">Galaktyki</a></li>
+      <li><a href="supernowe.html">Supernowe</a></li>
+      <li><a href="planety.html">Planety</a></li>
+      <li><a href="rozgwiazdy.html">Rozgwiazdy</a></li>
+      <li><a href="transmisja.html">Transmisja</a></li>
+    </ul>
+  </nav>
+
+  <section class="hud">
+    <h2>🌠 Kosmiczne wiadomości</h2>
+    <p>Witaj w centrum dowodzenia STERNE FM. Odkrywaj galaktyki, słuchaj transmisji i zanurz się w rozbłyskach supernowych.</p>
+  </section>
+
+  <section class="transmission">
+    <h2>🔴 LIVE</h2>
+    <div class="live-indicator">Na żywo</div>
+    <audio controls>
+      <source src="https://example.com/audio.mp3" type="audio/mpeg">
+      Twoja przeglądarka nie obsługuje odtwarzacza audio.
+    </audio>
+  </section>
+</body>
+</html>
 
 
 
