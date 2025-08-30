@@ -6,22 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap" rel="stylesheet" />
   <style>
-    <body><!-- Planety i galaktyki w tle -->
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" 
-     style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" 
-     alt="Ziemia">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" 
-     style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" 
-     alt="Jowisz">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" 
-     style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" 
-     alt="Mars">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg" 
-     style="position: fixed; top: 0; left: 0; width: 100%; opacity: 0.2; z-index: -2;" 
-     alt="Galaktyka spiralna"> {
+    body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
       background-color: #000;
@@ -32,29 +17,36 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      background: black;
+      z-index: -3;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
     }
-    .star {stars {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg') no-repeat center center;
-  background-size: cover;
-  opacity: 0.15;
-}
+    .star {
       position: absolute;
       width: 2px;
       height: 2px;
       background: white;
       border-radius: 50%;
       opacity: 0.8;
-      animation: fly linear infinite;
+      animation: fly linear infinite, shimmer 2s ease-in-out infinite;
     }
     @keyframes fly {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
+      animation: float 12s ease-in-out infinite;
     }
     header, section {
       padding: 40px 20px;
@@ -119,14 +111,7 @@
       line-height: 1.6;
     }
   </style>
-</head>keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
-  animation: float 12s ease-in-out infinite;
-}
+</head>
 <body>
   <div class="stars" id="stars"></div>
   <script>
@@ -139,6 +124,11 @@ img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
       document.getElementById('stars').appendChild(star);
     }
   </script>
+
+  <!-- Planety i galaktyki w tle -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
 
   <header>
     <h1>STERNE FM 🚀</h1>
@@ -190,33 +180,7 @@ img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
   <section class="starscape">
     <h2>🌟 Blask Gwiazd w Zasięgu Ręki</h2>
     <p>
-      Nie musisz patrzeć w niebo — wystarczy, że słuchasz.  
-      Gwiazdy są tu, w każdej audycji, w każdej nucie.  
-      STERNE FM to konstelacja dźwięków,  
-      A Ty jesteś jej częścią — podróżnikiem między światami.
-    </p>
-  </section>
-
-  <script>
-    const messages = [
-      "🛸 Nadajemy z pokładu STERNE ONE. Przekraczamy pas asteroid.",
-      "🌌 Mgławica inspiracji po lewej burzy nasze zmysły.",
-      "📡 Sygnał z Galaktyki X odebrany. Kreatywność rośnie.",
-      "🌀 Wchodzimy w wymiar 6. Przygotujcie sensory.",
-      "🌟 Supernova Sterne aktywowana. Kreatywność eksploduje.",
-      "🛰️ Transmisja Sterne Nova rozpoczęta. Nadajemy z centrum galaktyki."
-    ];
-    let i = 0;
-    setInterval(() => {
-      document.getElementById("transmission").textContent = messages[i];
-      i = (i + 1) % messages.length;
-    }, 6000);
-
-    function activateWarp() { alert("Silniki warp aktywowane! 🚀"); }
-    function scanSector() { alert("Skanowanie sektora... Wykryto kreatywność! 🔍"); }
-    function enterDimension() { alert("Wchodzimy w wymiar 6... Przygotuj się na inspirację! 🌀"); }
-    function activateSupernova() { alert("Supernova aktywowana! 🌟 Eksplozja pomysłów rozpoczęta."); }
-    function activateNova() { alert("Transmisja Sterne Nova rozpoczęta!
+      Nie musisz
 
 
 
