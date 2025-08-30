@@ -12,11 +12,6 @@
       background-color: #000;
       color: #0ff;
       overflow-x: hidden;
-      transition: background 0.5s, color 0.5s;
-    }
-    body.light-mode {
-      background-color: #fff;
-      color: #000;
     }
     .stars {
       position: fixed;
@@ -41,28 +36,14 @@
       100% { transform: translateY(100vh); opacity: 0; }
     }
     @keyframes shimmer {
-      0%, 100% { opacity: 0.8; }
+      0% { opacity: 0.8; }
       50% { opacity: 1; }
+      100% { opacity: 0.8; }
     }
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
+      0% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
-    }
-    @keyframes burst {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-    .supernova {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: radial-gradient(circle, #fff, #f0f);
-      border-radius: 50%;
-      animation: burst 2s ease-out infinite;
-      top: 200px;
-      left: 200px;
-      opacity: 0.5;
-      z-index: -1;
+      100% { transform: translateY(0); }
     }
     img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
       animation: float 12s ease-in-out infinite;
@@ -76,37 +57,12 @@
       font-family: 'Audiowide', cursive;
       text-align: center;
     }
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-    }
-    nav li {
-      margin: 0 15px;
-    }
-    nav a {
-      color: #0ff;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-      transition: border 0.3s;
-    }
-    nav a:hover {
-      border-bottom: 2px solid #fff;
-    }
-    .hud, .poem, .galaxy, .starscape {
-      background: rgba(0,0,0,0.6);
+    .hud {
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
       border: 2px solid #0ff;
       border-radius: 10px;
-      padding: 20px;
-      margin-top: 40px;
-      line-height: 1.6;
-    }
-    body.light-mode .hud, body.light-mode .poem, body.light-mode .galaxy, body.light-mode .starscape {
-      background: rgba(255,255,255,0.8);
-      border-color: #000;
+      text-align: center;
     }
     audio {
       width: 100%;
@@ -123,8 +79,9 @@
       margin-top: 10px;
     }
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
+      0% { opacity: 1; }
       50% { opacity: 0.4; }
+      100% { opacity: 1; }
     }
     .button {
       background-color: #0ff;
@@ -145,6 +102,14 @@
       margin-top: 20px;
       min-height: 60px;
     }
+    .poem, .galaxy, .starscape {
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 40px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -160,43 +125,64 @@
     }
   </script>
 
-  <!-- Planety -->
+  <!-- Planety i galaktyki w tle -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
   <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
-  <div class="supernova"></div>
 
   <header>
     <h1>STERNE FM 🚀</h1>
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Start</a></li>
-      <li><a href="galaktyki.html">Galaktyki</a></li>
-      <li><a href="supernowe.html">Supernowe</a></li>
-      <li><a href="planety.html">Planety</a></li>
-      <li><a href="rozgwiazdy.html">Rozgwiazdy</a></li>
-      <li><a href="transmisja.html">Transmisja</a></li>
-    </ul>
-  </nav>
-
   <section class="hud">
-    <h2>🌠 Kosmiczne wiadomości</h2>
-    <p>Witaj w centrum dowodzenia STERNE FM. Odkrywaj galaktyki, słuchaj transmisji i zanurz się w rozbłyskach supernowych.</p>
-  </section>
-
-  <section class="transmission">
-    <h2>🔴 LIVE</h2>
-    <div class="live-indicator">Na żywo</div>
-    <audio controls>
-      <source src="https://example.com/audio.mp3" type="audio/mpeg">
+    <audio controls autoplay>
+      <source src="http://s41.myradiostream.com:39624/stream" type="audio/mpeg">
       Twoja przeglądarka nie obsługuje odtwarzacza audio.
     </audio>
+    <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
+    <div class="transmission" id="transmission">
+      📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
+    </div>
+    <button class="button" onclick="activateWarp()">⚡ Silniki warp</button>
+    <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
+    <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
+    <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
+    <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
   </section>
-</body>
-</html>
+
+  <section class="poem">
+    <h2>🌌 Wiersze z Mgławicy Oriona</h2>
+    <p>
+      Gwiazdy śnią o nas, gdy śpimy w ich blasku,  
+      Ich światło — to listy wysyłane przez czas.  
+      W każdej melodii pulsuje planeta,  
+      A cisza — to echo dawno zgasłych słońc.
+    </p>
+    <p>
+      Słuchaj, jak kosmos oddycha rytmem STERNE FM,  
+      Jak fale radiowe oplatają pierścienie Saturna.  
+      Tu, gdzie muzyka jest językiem gwiazd,  
+      A każda audycja — to nowa orbita emocji.
+    </p>
+  </section>
+
+  <section class="galaxy">
+    <h2>🛰️ Przebłyski z Galaktyki X</h2>
+    <p>
+      📡 „Transmisja aktywna. Sygnał stabilny. Kreatywność w zenicie.”  
+      🌠 „Odbieramy fale emocji z układu Syntara. Przekaz: Miłość. Nadzieja. Dźwięk.”  
+      🌌 „Mgławica inspiracji rozświetla pokład. Załoga w stanie twórczego uniesienia.”  
+      🛸 „Wchodzimy w wymiar 6. Czas i przestrzeń tańczą w rytmie ambientu.”
+    </p>
+  </section>
+
+  <section class="starscape">
+    <h2>🌟 Blask Gwiazd w Zasięgu Ręki</h2>
+    <p>
+      Nie musisz
+
+
 
 
 
