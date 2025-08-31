@@ -100,6 +100,26 @@
       border-radius: 10px;
       margin-top: 20px;
     }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #0ff;
+      background: #000;
+      color: #0ff;
+      font-family: 'Orbitron', sans-serif;
+    }
+    button.send {
+      margin-top: 10px;
+      background-color: #0ff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -140,8 +160,12 @@
   </section>
 
   <section class="section-box">
-    <h2>📨 Pozdrowienia dla załogi</h2>
-    <p><a href="https://panelradiowy.pl/pozdrowienia/sternefm" target="_blank">Kliknij tutaj, by pozdrowić pokład STERNE ONE</a></p>
+    <h2>📨 Wyślij pozdrowienia</h2>
+    <form onsubmit="event.preventDefault(); alert('Pozdrowienie wysłane!');">
+      <input type="text" placeholder="Twoje imię lub pseudonim" required />
+      <textarea rows="4" placeholder="Treść pozdrowienia..." required></textarea>
+      <button class="send" type="submit">Wyślij pozdrowienie 🚀</button>
+    </form>
   </section>
 
   <section class="section-box">
@@ -157,19 +181,7 @@
   <section class="section-box">
     <h2>🧠 Ciekawostki o kosmosie</h2>
     <ul>
-      <li>🌌 W Drodze Mlecznej znajduje się ponad 100 miliardów gwiazd.</li>
-      <li>🪐 Na Jowiszu dzień trwa tylko 10 godzin.</li>
-      <li>🚀 Voyager 1 to najdalej oddalony obiekt stworzony przez człowieka.</li>
-      <li>🌠 Gwiazdy, które widzimy nocą, mogą już nie istnieć – ich światło podróżuje miliony lat.</li>
-    </ul>
-  </section>
-
-  <script>
-    function activateWarp() {
-      document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
-    }
-    function scanSector() {
-      document.get
+      <li>🌌 W Drodze Mlecznej znajduje się ponad 100 miliardów
 
 
 
