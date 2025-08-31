@@ -18,39 +18,18 @@
       width: 100%;
       height: 100%;
       z-index: -3;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg') no-repeat center center;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg') repeat;
       background-size: cover;
-      opacity: 0.15;
+      animation: drift 240s linear infinite;
+      opacity: 0.2;
     }
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: fly linear infinite, shimmer 2s ease-in-out infinite;
-    }
-    @keyframes fly {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
-    }
-    @keyframes shimmer {
-      0% { opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { opacity: 0.8; }
-    }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-    img[alt*="Ziemia"], img[alt*="Jowisz"], img[alt*="Mars"] {
-      animation: float 12s ease-in-out infinite;
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to { background-position: -5000px 5000px; }
     }
     header, section {
       padding: 40px 20px;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
     }
     h1, h2 {
@@ -102,7 +81,7 @@
       margin-top: 20px;
       min-height: 60px;
     }
-    .poem, .galaxy, .starscape {
+    .section-box {
       background: rgba(0,0,0,0.6);
       border: 2px solid #0ff;
       border-radius: 10px;
@@ -114,36 +93,17 @@
       color: #0ff;
       text-decoration: none;
     }
+    iframe.chat {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <script>
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * window.innerWidth + 'px';
-      star.style.top = Math.random() * window.innerHeight + 'px';
-      star.style.animationDuration = (Math.random() * 4 + 2) + 's';
-      document.getElementById('stars').appendChild(star);
-    }
-
-    function activateWarp() {
-      document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
-    }
-    function scanSector() {
-      document.getElementById('transmission').innerText = "🔍 Skanowanie sektora... Wykryto sygnały kreatywności!";
-    }
-    function enterDimension() {
-      document.getElementById('transmission').innerText = "🌀 Wchodzimy w wymiar 6. Czasoprzestrzeń zniekształcona.";
-    }
-    function activateSupernova() {
-      document.getElementById('transmission').innerText = "🌟 Supernova wybuchła! Fale inspiracji rozchodzą się po pokładzie.";
-    }
-    function activateNova() {
-      document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
-    }
-  </script>
+  <div class="stars"></div>
 
   <!-- Planety w tle -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
@@ -153,6 +113,7 @@
   <header>
     <h1>STERNE FM 🚀</h1>
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
+    <p><strong>🌌 Zabieramy Was w inny wymiar kosmosu – pełen dźwięku, emocji i gwiezdnych inspiracji.</strong></p>
   </header>
 
   <section class="hud">
@@ -173,8 +134,42 @@
     <p><a href="http://uk25freenew.listen2myradio.com:28145/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
   </section>
 
-  <section class="poem">
-    <h2>🌌 Wiersze z Mgławicy Oriona</h
+  <section class="section-box">
+    <h2>💬 Czat dla słuchaczy</h2>
+    <iframe class="chat" src="https://sternenfm.chatango.com"></iframe>
+  </section>
+
+  <section class="section-box">
+    <h2>📨 Pozdrowienia dla załogi</h2>
+    <p><a href="https://panelradiowy.pl/pozdrowienia/sternefm" target="_blank">Kliknij tutaj, by pozdrowić pokład STERNE ONE</a></p>
+  </section>
+
+  <section class="section-box">
+    <h2>📅 Ramówka audycji</h2>
+    <ul>
+      <li><strong>18:00</strong> – Start transmisji LIVE</li>
+      <li><strong>19:00</strong> – Ambient z Mgławicy Oriona</li>
+      <li><strong>20:00</strong> – Space Disco i pozdrowienia</li>
+      <li><strong>21:00</strong> – Transmisja Nova: goście z Galaktyki X</li>
+    </ul>
+  </section>
+
+  <section class="section-box">
+    <h2>🧠 Ciekawostki o kosmosie</h2>
+    <ul>
+      <li>🌌 W Drodze Mlecznej znajduje się ponad 100 miliardów gwiazd.</li>
+      <li>🪐 Na Jowiszu dzień trwa tylko 10 godzin.</li>
+      <li>🚀 Voyager 1 to najdalej oddalony obiekt stworzony przez człowieka.</li>
+      <li>🌠 Gwiazdy, które widzimy nocą, mogą już nie istnieć – ich światło podróżuje miliony lat.</li>
+    </ul>
+  </section>
+
+  <script>
+    function activateWarp() {
+      document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
+    }
+    function scanSector() {
+      document.get
 
 
 
