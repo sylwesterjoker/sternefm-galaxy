@@ -122,7 +122,41 @@
     }
   </style>
 </head>
-<body>
+<script>
+  function activateWarp() {
+    document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
+  }
+  function scanSector() {
+    document.getElementById('transmission').innerText = "🔍 Skanowanie sektora... Wykryto sygnały kreatywności!";
+  }
+  function enterDimension() {
+    document.getElementById('transmission').innerText = "🌀 Wchodzimy w wymiar 6. Czasoprzestrzeń zniekształcona.";
+  }
+  function activateSupernova() {
+    document.getElementById('transmission').innerText = "🌟 Supernova wybuchła! Fale inspiracji rozchodzą się po pokładzie.";
+  }
+  function activateNova() {
+    document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
+  }
+</script>
+  <script>
+  function activateWarp() {
+    document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
+  }
+  function scanSector() {
+    document.getElementById('transmission').innerText = "🔍 Skanowanie sektora... Wykryto sygnały kreatywności!";
+  }
+  function enterDimension() {
+    document.getElementById('transmission').innerText = "🌀 Wchodzimy w wymiar 6. Czasoprzestrzeń zniekształcona.";
+  }
+  function activateSupernova() {
+    document.getElementById('transmission').innerText = "🌟 Supernova wybuchła! Fale inspiracji rozchodzą się po pokładzie.";
+  }
+  function activateNova() {
+    document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
+  }
+</script>
+  <body>
   <div class="stars"></div>
 
   <!-- Planety w tle -->
@@ -163,7 +197,10 @@
   </ul>
 </section>
   
-    <h2>💬 Czat dla słuchaczy</h2>
+    <section class="section-box">
+  <h2>💬 Czat dla słuchaczy</h2>
+  <iframe class="chat" src="https://sternenfm.chatango.com"></iframe>
+</section>
     <iframe class="chat" src="https://sternenfm.chatango.com"></iframe>
   </section>
 
