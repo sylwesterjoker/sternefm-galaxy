@@ -27,6 +27,28 @@
       from { background-position: 0 0; }
       to { background-position: -5000px 5000px; }
     }
+    .starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -2;
+      background: transparent;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #0ff;
+      animation: fly 5s linear infinite;
+    }
+    @keyframes fly {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
     header, section {
       padding: 40px 20px;
       max-width: 800px;
@@ -115,38 +137,7 @@
       font-weight: bold;
       cursor: pointer;
     }
-  </style>starfield {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -2;
-  background: transparent;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #0ff;
-  animation: fly 5s linear infinite;
-}
-
-@keyframes fly {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-
-
-
-
-
-
-  
+  </style>
   <script>
     function activateWarp() {
       document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
@@ -163,34 +154,28 @@
     function activateNova() {
       document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
     }
+    function checkQuiz() {
+      let score = 0;
+      if (document.querySelector('input[name="q1"]:checked')?.value === "8") score++;
+      if (document.querySelector('input[name="q2"]:checked')?.value === "czarna_dziura") score++;
+      if (document.querySelector('input[name="q3"]:checked')?.value === "Europa") score++;
+      document.getElementById("quizResult").innerText = "Twój wynik: " + score + "/3";
+    }
   </script>
 </head>
 <body>
   <div class="stars"></div>
-<div class="starfield" id="starfield"></div>
-<script>
-  for (let i = 0; i < 100; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.top = Math.random() * -100 + 'vh';
-    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    document.getElementById('starfield').appendChild(star);
-  }
-</script>
-
-
-
-
-
-
-
-
-  
-  <!-- Planety w tle -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
+  <div class="starfield" id="starfield"></div>
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * -100 + 'vh';
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.getElementById('starfield').appendChild(star);
+    }
+  </script>
 
   <header>
     <h1>STERNE FM 🚀</h1>
@@ -199,9 +184,7 @@
   </header>
 
   <section class="hud">
-    <!-- Odtwarzacz przez iframe -->
     <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
-
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
       📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
@@ -211,86 +194,19 @@
     <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
     <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
     <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
-    <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
-    <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
   </section>
-<section class="section-box">
-  <h2>🌌 Podróż przez Wszechświat</h2>
-  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
 
-  <h3>🌠 Droga Mleczna</h3>
-  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych.</p>
-
-  <h3>🕳️ Czarne dziury</h3>
-  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. W centrum Drogi Mlecznej znajduje się Sagittarius A*, supermasywna czarna dziura.</p>
-<section class="section-box">
-  <h2>🧪 Quiz: Jak dobrze znasz kosmos?</h2>
-  <form onsubmit="event.preventDefault(); checkQuiz();">
-    <p>1. Ile planet jest w Układzie Słonecznym?</p>
-    <input type="radio" name="q1" value="7"> 7<br>
-    <input type="radio" name="q1" value="8"> 8<br>
-    <input type="radio" name="q1" value="9"> 9<br>
-
-    <p>2. Co znajduje się w centrum Drogi Mlecznej?</p>
-    <input type="radio" name="q2" value="gwiazda"> Gwiazda<br>
-    <input type="radio" name="q2" value="czarna_dziura"> Czarna dziura<br>
-    <input type="radio" name="q2" value="planeta"> Planeta<br>
-
-    <p>3. Który księżyc może mieć ocean pod lodem?</p>
-    <input type="radio" name="q3" value="Europa"> Europa<br>
-    <input type="radio" name="q3" value="Io"> Io<br>
-    <input type="radio" name="q3" value="Titan"> Titan<br>
-
-    <button class="send" type="submit">Sprawdź odpowiedzi 🌌</button>
-  </form>
-  <div id="quizResult" style="margin-top: 20px;"></div>
-
-  <script>
-    function checkQuiz() {
-      let score = 0;
-      if (document.querySelector('input[name="q1"]:checked')?.value === "8") score++;
-      if (document.querySelector('input[name="q2"]:checked')?.value === "czarna_dziura") score++;
-      if (document.querySelector('input[name="q3"]:checked')?.value === "Europa") score++;
-      document.getElementById("quizResult").innerText = "Twój wynik: " + score + "/3";
-    }
-  </script>
-</section>
-<section class="section-box">
-  <h2>👨‍🚀 Załoga STERNE ONE</h2>
-  <p><strong>Kapitan:</strong> Sylwester Joker – dowódca misji, twórca galaktycznego radia STERNEFM.</p>
-  <p><strong>Inżynier dźwięku:</strong> AI Copilot – odpowiedzialny za jakość transmisji i warpowe efekty dźwiękowe.</p>
-  <p><strong>Navigator:</strong> Chatango – prowadzi czat z załogą i odbiera pozdrowienia z całej galaktyki.</p>
-  <p><strong>Statek:</strong> STERNE ONE – jednostka klasy kreatywnej, wyposażona w silniki warp i nadajnik SHOUTcast.</p>
-</section>
-
-
-
-
-
-
-
-
-  
-<section class="section-box">
-  <h2>📅 Ramówka audycji</h2>
-  <ul>
-    <li><strong>18:00</strong> – Start transmisji LIVE</li>
-    <li><strong>19:00</strong> – Ambient z Mgławicy Oriona</li>
-    <li><strong>20:00</strong> – Space Disco i pozdrowienia</li>
-    <li><strong>21:00</strong> – Transmisja Nova: goście z Galaktyki X</li>
-  </ul>
-</section>
   <section class="section-box">
-    <h2>🧠 Ciekawostki o kosmosie</h2>
-    <ul>
-      <li>🌌 Droga Mleczna zawiera ponad 100 miliardów gwiazd.</li>
-      <li>🪐 Jowisz jest największą planetą Układu Słonecznego.</li>
-      <li>🌠 Supernowe to eksplozje umierających gwiazd, widoczne z milionów lat świetlnych.</li>
-      <li>🕳️ Czarne dziury pochłaniają wszystko, nawet światło — w centrum naszej galaktyki znajduje się Sagittarius A*.</li>
-      <li>🌙 Księżyc Europy może mieć ocean pod lodową powierzchnią — możliwe miejsce życia.</li>
-      <li>🛰️ Galaktyka Andromedy zbliża się do nas z prędkością 300 km/s.</li>
-      <li>🌌 Mgławica Oriona to miejsce narodzin nowych gwiazd.</li>
-      <li>🚀 Voyager
+    <h2>🧪 Quiz: Jak dobrze znasz kosmos?</h2>
+    <form onsubmit="event.preventDefault(); checkQuiz();">
+      <p>1. Ile planet jest w Układzie Słonecznym?</p>
+      <input type="radio" name="q1" value="7"> 7<br>
+      <input type="radio" name="q1" value="8"> 8<br>
+      <input type="radio" name="q1" value="9"> 9<br>
+
+      <p>2. Co znajduje się w centrum Drogi Mlecznej?</p>
+      <input type="radio" name="q2" value="gwiazda"> Gwiazda<br>
+      <input type="radio" name="q
 
 
 
