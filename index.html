@@ -180,8 +180,13 @@
       Twoja przeglądarka nie obsługuje odtwarzacza audio.
      <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p> 
     <audio controls autoplay>
-  <source src="https://sternefm.radio12345.com/stream" type="audio/mpeg">
-  Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  <!-- Odtwarzacz SSL z fallbackiem -->
+<div style="margin-top: 20px;">
+  <audio controls autoplay style="width: 100%; border-radius: 10px;">
+    <source src="https://sternefm.radio12345.com/stream" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio. Możesz słuchać przez <a href="https://sternefm.radio12345.com" target="_blank">zewnętrzny odtwarzacz SSL</a>.
+  </audio>
+</div>
 </audio>
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
