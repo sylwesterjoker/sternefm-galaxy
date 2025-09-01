@@ -134,8 +134,50 @@
     }
   </script>
 </head>
-<body>
-  <div class="stars"></div>
+<body><section class="section-box">
+  <h2>📬 Skontaktuj się z nami</h2>
+  <form id="contact-form">
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">Wiadomość:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button class="send" type="submit">🚀 Wyślij wiadomość</button>
+  </form>
+  <p id="form-response" style="margin-top:10px;"></p>
+</section>
+
+<section class="section-box">
+  <h2>💬 Czat pokładowy</h2>
+  <iframe class="chat" src="https://www3.cbox.ws/box/?boxid=3529634&boxtag=Jv7gkA" allowtransparency="yes"></iframe>
+</section>
+
+<section class="section-box">
+  <h2>👨‍🚀 Licznik odwiedzin</h2>
+  <p>Odwiedziny: <span id="visit-count">0</span></p>
+</section>
+
+<script>
+  // Obsługa formularza kontaktowego
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('form-response').innerText = "✅ Wiadomość została wysłana! Dziękujemy za kontakt.";
+    this.reset();
+  });
+
+  // Licznik odwiedzin (symulacja z localStorage)
+  const visitKey = 'sternefm-visits';
+  let visits = localStorage.getItem(visitKey);
+  visits = visits ? parseInt(visits) + 1 : 1;
+  localStorage.setItem(visitKey, visits);
+  document.getElementById('visit-count').innerText = visits;
+</script>
+
+ <div class="stars"></div>
 
   <!-- Planety w tle -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
