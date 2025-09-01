@@ -27,28 +27,6 @@
       from { background-position: 0 0; }
       to { background-position: -5000px 5000px; }
     }
-    .starfield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -2;
-      background: transparent;
-      overflow: hidden;
-    }
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: #0ff;
-      animation: fly 5s linear infinite;
-    }
-    @keyframes fly {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
-    }
     header, section {
       padding: 40px 20px;
       max-width: 800px;
@@ -110,6 +88,13 @@
       color: #0ff;
       text-decoration: none;
     }
+    iframe.chat {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
     input, textarea {
       width: 100%;
       padding: 10px;
@@ -151,17 +136,6 @@
 </head>
 <body>
   <div class="stars"></div>
-  <div class="starfield" id="starfield"></div>
-  <script>
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * -100 + 'vh';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      document.getElementById('starfield').appendChild(star);
-    }
-  </script>
 
   <!-- Planety w tle -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
@@ -175,7 +149,9 @@
   </header>
 
   <section class="hud">
+    <!-- Odtwarzacz przez iframe -->
     <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
+
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
       📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
@@ -188,8 +164,16 @@
     <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
     <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
   </section>
+<section class="section-box">
+  <h2>🌌 Podróż przez Wszechświat</h2>
+  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
 
-  <section class="section-box">
+  <h3>🌠 Droga Mleczna</h3>
+  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych.</p>
+
+  <h3>🕳️ Czarne dziury</h3>
+  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. W centrum Drogi Mlecznej znajduje się Sagittarius A*, supermasywna czarna dziura.</p>
+
     <
 
 
