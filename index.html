@@ -27,28 +27,6 @@
       from { background-position: 0 0; }
       to { background-position: -5000px 5000px; }
     }
-    .starfield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -2;
-      background: transparent;
-      overflow: hidden;
-    }
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: #0ff;
-      animation: fly 5s linear infinite;
-    }
-    @keyframes fly {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
-    }
     header, section {
       padding: 40px 20px;
       max-width: 800px;
@@ -154,28 +132,15 @@
     function activateNova() {
       document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
     }
-    function checkQuiz() {
-      let score = 0;
-      if (document.querySelector('input[name="q1"]:checked')?.value === "8") score++;
-      if (document.querySelector('input[name="q2"]:checked')?.value === "czarna_dziura") score++;
-      if (document.querySelector('input[name="q3"]:checked')?.value === "Europa") score++;
-      document.getElementById("quizResult").innerText = "Twój wynik: " + score + "/3";
-    }
   </script>
 </head>
 <body>
   <div class="stars"></div>
-  <div class="starfield" id="starfield"></div>
-  <script>
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * -100 + 'vh';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      document.getElementById('starfield').appendChild(star);
-    }
-  </script>
+
+  <!-- Planety w tle -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
 
   <header>
     <h1>STERNE FM 🚀</h1>
@@ -184,7 +149,9 @@
   </header>
 
   <section class="hud">
+    <!-- Odtwarzacz przez iframe -->
     <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
+
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
       📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
@@ -194,19 +161,20 @@
     <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
     <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
     <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
+    <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
+    <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
   </section>
+<section class="section-box">
+  <h2>🌌 Podróż przez Wszechświat</h2>
+  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
 
-  <section class="section-box">
-    <h2>🧪 Quiz: Jak dobrze znasz kosmos?</h2>
-    <form onsubmit="event.preventDefault(); checkQuiz();">
-      <p>1. Ile planet jest w Układzie Słonecznym?</p>
-      <input type="radio" name="q1" value="7"> 7<br>
-      <input type="radio" name="q1" value="8"> 8<br>
-      <input type="radio" name="q1" value="9"> 9<br>
+  <h3>🌠 Droga Mleczna</h3>
+  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych.</p>
 
-      <p>2. Co znajduje się w centrum Drogi Mlecznej?</p>
-      <input type="radio" name="q2" value="gwiazda"> Gwiazda<br>
-      <input type="radio" name="q
+  <h3>🕳️ Czarne dziury</h3>
+  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. W centrum Drogi Mlecznej znajduje się Sagittarius A*, supermasywna czarna dziura.</p>
+
+
 
 
 
