@@ -23,9 +23,41 @@
       animation: drift 240s linear infinite;
       opacity: 0.2;
     }
+    .starfield {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: transparent;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .starfield::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow:
+        20px 30px white,
+        100px 80px white,
+        200px 150px white,
+        300px 250px white,
+        400px 350px white,
+        500px 450px white,
+        600px 550px white,
+        700px 650px white,
+        800px 750px white,
+        900px 850px white;
+      animation: twinkle 2s infinite ease-in-out;
+    }
     @keyframes drift {
       from { background-position: 0 0; }
       to { background-position: -5000px 5000px; }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
     }
     header, section {
       padding: 40px 20px;
@@ -35,6 +67,7 @@
     h1, h2 {
       font-family: 'Audiowide', cursive;
       text-align: center;
+      text-shadow: 0 0 10px #0ff;
     }
     .hud {
       background: rgba(0,0,0,0.7);
@@ -88,33 +121,6 @@
       color: #0ff;
       text-decoration: none;
     }
-    iframe.chat {
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #0ff;
-      background: #000;
-      color: #0ff;
-      font-family: 'Orbitron', sans-serif;
-    }
-    button.send {
-      margin-top: 10px;
-      background-color: #0ff;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
   </style>
   <script>
     function activateWarp() {
@@ -136,6 +142,7 @@
 </head>
 <body>
   <div class="stars"></div>
+  <div class="starfield"></div>
 
   <!-- Planety w tle -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
@@ -149,9 +156,7 @@
   </header>
 
   <section class="hud">
-    <!-- Odtwarzacz przez iframe -->
     <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
-
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
       📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
@@ -164,15 +169,12 @@
     <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
     <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
   </section>
-<section class="section-box">
-  <h2>🌌 Podróż przez Wszechświat</h2>
-  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
 
-  <h3>🌠 Droga Mleczna</h3>
-  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych.</p>
+  <section class="section-box">
+    <h2>🌌 Podróż przez Wszechświat</h2>
+    <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
 
-  <h3>🕳️ Czarne dziury</h3>
-  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. W centrum Drogi Mlecznej 
+    <h3>🌠 Droga Mleczna</h3>
 
 
 
