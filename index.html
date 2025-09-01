@@ -35,8 +35,8 @@
     .starfield::before {
       content: '';
       position: absolute;
-      width: 2px;
-      height: 2px;
+      width: 3px;
+      height: 3px;
       background: white;
       box-shadow:
         20px 30px white,
@@ -59,135 +59,547 @@
       0%, 100% { opacity: 0.2; }
       50% { opacity: 1; }
     }
-    header, section {
+    header {
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
-    }
-    h1, h2 {
-      font-family: 'Audiowide', cursive;
       text-align: center;
+    }
+    h1 {
+      font-family: 'Audiowide', cursive;
       text-shadow: 0 0 10px #0ff;
     }
-    .hud {
-      background: rgba(0,0,0,0.7);
-      padding: 20px;
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .live-indicator {
-      background-color: red;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 20px;
-      animation: pulse 1s infinite;
-      display: inline-block;
-      margin-top: 10px;
-    }
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
-    }
-    .button {
-      background-color: #0ff;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      margin: 10px;
-      transition: background 0.3s;
-    }
-    .button:hover {
-      background-color: #fff;
-    }
-    .transmission {
-      font-style: italic;
-      margin-top: 20px;
-      min-height: 60px;
-    }
-    .section-box {
-      background: rgba(0,0,0,0.6);
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 40px;
-      line-height: 1.6;
-    }
-    a {
-      color: #0ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .planet-menu {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .planet-menu a {
-      margin: 0 10px;
-      display: inline-block;
-      padding: 8px 16px;
-      background-color: #0ff;
-      color: #000;
-      border-radius: 20px;
-      text-decoration: none;
-      box-shadow: 0 0 10px #0ff;
-    }
-    .planet-menu a:hover {
-      background-color: #fff;
+    .planet {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.5;
     }
   </style>
-  <script>
-    function activateWarp() {
-      document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
-    }
-    function scanSector() {
-      document.getElementById('transmission').innerText = "🔍 Skanowanie sektora... Wykryto sygnały kreatywności!";
-    }
-    function enterDimension() {
-      document.getElementById('transmission').innerText = "🌀 Wchodzimy w wymiar 6. Czasoprzestrzeń zniekształcona.";
-    }
-    function activateSupernova() {
-      document.getElementById('transmission').innerText = "🌟 Supernova wybuchła! Fale inspiracji rozchodzą się po pokładzie.";
-    }
-    function activateNova() {
-      document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
-    }
-  </script>
 </head>
 <body>
   <div class="stars"></div>
   <div class="starfield"></div>
 
   <!-- Planety w tle -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="planet" style="bottom: 50px; left: 50px; width: 120px;" alt="Ziemia">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" class="planet" style="top: 100px; right: 60px; width: 140px;" alt="Jowisz">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" class="planet" style="top: 300px; left: 100px; width: 100px;" alt="Mars">
 
   <header>
     <h1>STERNE FM 🚀</h1>
     <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
     <p><strong>🌌 Zabieramy Was w inny wymiar kosmosu – pełen dźwięku, emocji i gwiezdnych inspiracji.</strong></p>
-  </header>
+  </header><section class="hud">
+  <!-- Odtwarzacz SHOUTcast -->
+  <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
 
-  <section class="hud">
-    <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
-    <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
-    <div class="transmission" id="transmission">
-      📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
-    </div>
-    <button class="button" onclick="activateWarp()">⚡ Silniki warp</button>
-    <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
-    <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
-    <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
-    <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
-    <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
-    <p><a href="http://uk5freenew.listen2myradio.com
+  <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
+  <div class="transmission" id="transmission">
+    📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
+  </div>
 
+  <!-- Interaktywne przyciski -->
+  <button class="button" onclick="activateWarp()">⚡ Silniki warp</button>
+  <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
+  <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
+  <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
+  <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
 
+  <!-- Linki zewnętrzne -->
+  <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
+  <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
+</section>
+<section class="section-box">
+  <h2>🌌 Podróż przez Wszechświat</h2>
+  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
+
+  <h3>🌠 Droga Mleczna</h3>
+  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych. W centrum znajduje się Sagittarius A* — supermasywna czarna dziura.</p>
+
+  <h3>🕳️ Czarne dziury</h3>
+  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. Są jak kosmiczne portale, które deformują czas i przestrzeń.</p>
+
+  <h3>💥 Supernowe</h3>
+  <p>Eksplozje umierających gwiazd, które rozsiewają pierwiastki życia po galaktyce. To narodziny nowych układów planetarnych.</p>
+
+  <h3>✨ Rozbłyski gwiezdne</h3>
+  <p>Nagłe emisje energii z powierzchni gwiazd. Mogą wpływać na komunikację i tworzyć widowiskowe zorze w atmosferach planet.</p>
+</section><section class="section-box">
+  <h2>🪐 Planety Układu Słonecznego</h2>
+
+  <h3>🔥 Mars – Czerwona Tajemnica</h3>
+  <p>Mars to planeta pełna kontrastów – lodowe czapy na biegunach, gigantyczne kaniony i ślady dawnych rzek. Czy kiedyś tętniło tu życie? To cel przyszłych misji kolonizacyjnych – symbol odwagi i eksploracji.</p>
+
+  <h3>💫 Wenus – Piekielna Siostra Ziemi</h3>
+  <p>Choć podobna rozmiarem do Ziemi, Wenus to piekło – jej atmosfera to gęsty dwutlenek węgla, a powierzchnia rozgrzana do 460°C. Jej dzień trwa dłużej niż rok, a rotacja jest odwrotna.</p>
+
+  <h3>🌟 Jowisz – Gigant Grawitacji</h3>
+  <p>Największa planeta Układu Słonecznego. Jego atmosfera to wirujące pasma chmur, a Wielka Czerwona Plama to burza większa niż Ziemia. Jowisz chroni nas przed asteroidami – to strażnik planetarny.</p>
+
+  <h3>🪐 Saturn – Władca Pierścieni</h3>
+  <p>Saturn to szósta planeta od Słońca, znana ze swoich spektakularnych pierścieni z lodu i skał. Jego atmosfera to mieszanka wodoru i helu, a burze potrafią trwać miesiącami.</p>
+
+  <h3>❄️ Pluton – Lodowy Wędrowiec</h3>
+  <p>Choć zdegradowany do planety karłowatej, Pluton wciąż fascynuje. Jego serce z lodu i azotu bije w rytmie odległych orbit. To planeta outsiderów – samotna, tajemnicza, piękna.</p>
+
+  <h3>🌕 Księżyc – Strażnik Nocy</h3>
+  <p>Jedyny naturalny satelita Ziemi. Jego powierzchnia pokryta jest kraterami, a jego fazy wyznaczają rytm życia na naszej planecie. To milczący towarzysz, który od wieków inspiruje poetów, naukowców i marzycieli.</p>
+
+  <h3>☀️ Słońce – Serce Układu</h3>
+  <p>Nasza gwiazda życia. Emituje światło i energię, które napędzają wszystko, co znamy. Jego powierzchnia to ocean plazmy, a rozbłyski słoneczne potrafią zakłócić komunikację na Ziemi. Bez Słońca nie byłoby życia.</p>
+
+  <h2>💥 Supernowe i Rozbłyski Gwiezdne</h2>
+
+  <h3>💥 Supernowe</h3>
+  <p>To eksplozje umierających gwiazd, które rozsiewają pierwiastki życia po galaktyce. Supernowa może rozświetlić niebo na tygodnie, a jej pozostałości tworzą mgławice i nowe gwiazdy.</p>
+
+  <h3>✨ Rozbłyski Gwiezdne</h3>
+  <p>To nagłe emisje energii z powierzchni gwiazd. Mogą wpływać na komunikację, tworzyć zorze polarne i być sygnałem intensywnej aktywności magnetycznej. W przypadku młodych gwiazd – to oznaka ich dojrzewania.</p>
+
+  <h3>🕳️ Czarne Dziury</h3>
+  <p>Obiekty o tak silnej grawitacji, że nic – nawet światło – nie może się z nich wydostać. W centrum Drogi Mlecznej znajduje się Sagittarius A*, supermasywna czarna dziura. To granica znanej fizyki – miejsce, gdzie czas się zatrzymuje.</p>
+</section>
+<!-- Nawigacja do podstron -->
+<div class="planet-menu">
+  <h2>🧭 Eksploruj Planety</h2>
+  <a href="mars.html">🔥 Mars</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mars – Czerwona Tajemnica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔥 Mars – Czerwona Tajemnica</h1>
+  <div class="planet-info">
+    <p>Mars to czwarta planeta od Słońca, znana ze swojej rdzawo-czerwonej powierzchni. Pokryty jest pyłem bogatym w tlenek żelaza, który nadaje mu charakterystyczny kolor.</p>
+    <p>Na Marsie znajdują się największy wulkan w Układzie Słonecznym – Olympus Mons – oraz najgłębszy kanion – Valles Marineris. Jego cienka atmosfera składa się głównie z dwutlenku węgla.</p>
+    <p>To planeta kontrastów: lodowe czapy na biegunach, ślady dawnych rzek i możliwość istnienia życia w przeszłości. Mars od wieków fascynuje naukowców i marzycieli.</p>
+    <p>W kulturze popularnej Mars to symbol samotności, eksploracji i przyszłości ludzkości. Czy będzie pierwszym krokiem ku kolonizacji kosmosu?</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars – zdjęcie z orbity">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+
+ <a href="wenus.html">💫 Wenus</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wenus – Piekielna Siostra Ziemi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💫 Wenus – Piekielna Siostra Ziemi</h1>
+  <div class="planet-info">
+    <p>Wenus to druga planeta od Słońca i najbliższa sąsiadka Ziemi. Choć podobna rozmiarem, jest zupełnie inna – jej atmosfera to gęsty dwutlenek węgla, a powierzchnia rozgrzana do ponad 460°C.</p>
+    <p>Na Wenus panuje efekt cieplarniany w ekstremalnej formie. Ciśnienie na powierzchni jest 90 razy większe niż na Ziemi, a niebo spowite jest żółtą mgłą kwasu siarkowego.</p>
+    <p>Wenus obraca się bardzo powoli – jeden dzień trwa tam dłużej niż rok. Co więcej, jej rotacja jest odwrotna – Słońce wschodzi na zachodzie i zachodzi na wschodzie.</p>
+    <p>Choć nieprzyjazna dla życia, Wenus fascynuje naukowców. To planeta zagadek, która może skrywać tajemnice przeszłości – być może kiedyś była bardziej podobna do Ziemi.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg" alt="Wenus – zdjęcie z sondy">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+<a href="jowisz.html">🌟 Jowisz</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jowisz – Gigant Grawitacji</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌟 Jowisz – Gigant Grawitacji</h1>
+  <div class="planet-info">
+    <p>Jowisz to piąta planeta od Słońca i największy gazowy olbrzym w Układzie Słonecznym. Jego masa jest ponad dwa razy większa niż wszystkich innych planet razem wziętych.</p>
+    <p>Charakterystyczna Wielka Czerwona Plama to burza trwająca od co najmniej 300 lat – większa niż cała Ziemia. Atmosfera Jowisza składa się głównie z wodoru i helu, a jego pasma chmur wirują z ogromną prędkością.</p>
+    <p>Jowisz posiada ponad 90 księżyców, w tym Ganimedes – największy księżyc w Układzie Słonecznym. Jego potężna grawitacja działa jak tarcza, chroniąc wewnętrzne planety przed asteroidami.</p>
+    <p>To planeta strażnik – bez niego Ziemia mogłaby być znacznie bardziej narażona na kosmiczne zagrożenia. Jowisz to symbol siły, ochrony i majestatu.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jowisz – zdjęcie z sondy">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+<a href="saturn.html">🪐 Saturn</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Saturn – Władca Pierścieni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🪐 Saturn – Władca Pierścieni</h1>
+  <div class="planet-info">
+    <p>Saturn to szósta planeta od Słońca i drugi co do wielkości gazowy olbrzym w Układzie Słonecznym. Jego najbardziej charakterystyczną cechą są majestatyczne pierścienie z lodu i skał, które rozciągają się na setki tysięcy kilometrów.</p>
+    <p>Atmosfera Saturna składa się głównie z wodoru i helu. Na jego powierzchni występują potężne burze, a wiatr może osiągać prędkość ponad 1800 km/h.</p>
+    <p>Saturn posiada ponad 140 księżyców, w tym Tytan – większy niż Merkury, z gęstą atmosferą i jeziorami ciekłego metanu. To jeden z najbardziej fascynujących obiektów w Układzie Słonecznym.</p>
+    <p>Jego pierścienie są jak kosmiczne ornamenty – delikatne, ale potężne. Saturn to planeta elegancji, tajemnicy i harmonii.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturn – zdjęcie z sondy Cassini">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+<a href="pluton.html">❄️ Pluton</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pluton – Lodowy Wędrowiec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>❄️ Pluton – Lodowy Wędrowiec</h1>
+  <div class="planet-info">
+    <p>Pluton to planeta karłowata, która przez dekady była uznawana za dziewiątą planetę Układu Słonecznego. Choć zdegradowany w 2006 roku, wciąż budzi emocje i fascynację.</p>
+    <p>Jego powierzchnia pokryta jest lodem azotowym, a charakterystyczne „serce” – region Tombaugh – przypomina kształtem symbol miłości i samotności. Temperatura na Plutonie spada do -230°C.</p>
+    <p>Pluton ma pięć księżyców, z których największy – Charon – tworzy z nim układ podwójny. Razem ta para tańczy wokół wspólnego środka masy, jakby były nierozłącznymi towarzyszami.</p>
+    <p>To planeta outsiderów – odległa, tajemnicza, piękna. Dla wielu wciąż jest prawdziwą planetą, symbolem tego, co nieoczywiste i niedocenione.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Nh-pluto-in-true-color_2x_JPEG-edit-frame.jpg" alt="Pluton – zdjęcie z misji New Horizons">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+ <a href="ksiezyc.html">🌕 Księżyc</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Księżyc – Strażnik Nocy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌕 Księżyc – Strażnik Nocy</h1>
+  <div class="planet-info">
+    <p>Księżyc to jedyny naturalny satelita Ziemi. Jego obecność wpływa na pływy oceaniczne, cykle biologiczne i rytm życia na naszej planecie. Od wieków inspiruje poetów, naukowców i marzycieli.</p>
+    <p>Powierzchnia Księżyca pokryta jest kraterami, powstałymi w wyniku uderzeń meteorytów. Nie posiada atmosfery, przez co jego niebo jest zawsze czarne, nawet w dzień.</p>
+    <p>Fazy Księżyca – od nowiu po pełnię – wyznaczają rytm kalendarzy i tradycji. Jego wpływ na Ziemię jest nie tylko fizyczny, ale też kulturowy i duchowy.</p>
+    <p>W 1969 roku człowiek po raz pierwszy postawił stopę na jego powierzchni. Misja Apollo 11 była początkiem nowej ery eksploracji kosmosu. Księżyc to nasz pierwszy krok w stronę gwiazd.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg" alt="Księżyc – zdjęcie w pełni">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+ <a href="slonce.html">☀️ Słońce</a><!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Słońce – Serce Układu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #0ff;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Messier_81_Hubble.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    h1 {
+      text-align: center;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .planet-info {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>☀️ Słońce – Serce Układu</h1>
+  <div class="planet-info">
+    <p>Słońce to nasza gwiazda życia – centralny punkt Układu Słonecznego, wokół którego krążą wszystkie planety. Jego masa stanowi ponad 99% masy całego układu.</p>
+    <p>Składa się głównie z wodoru i helu. W jego jądrze zachodzą reakcje termojądrowe, które produkują ogromne ilości energii – to dzięki nim mamy światło i ciepło.</p>
+    <p>Powierzchnia Słońca to ocean plazmy, a jego aktywność objawia się w postaci rozbłysków słonecznych i koronalnych wyrzutów masy. Te zjawiska mogą wpływać na komunikację i sieci energetyczne na Ziemi.</p>
+    <p>Bez Słońca nie byłoby życia. To nasz kosmiczny kompas, źródło rytmu biologicznego i inspiracja dla kultur na całym świecie. Jego światło to początek każdego dnia.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Solar_surface.jpg" alt="Słońce – zdjęcie powierzchni">
+    <a href="index.html">🔙 Powrót na pokład STERNEFM</a>
+  </div>
+</body>
+</html>
+
+<a href="ramowka.html">📅 Ramówka</a>
+  <a href="pozdrowienia.html">💬 Pozdrowienia</a>
+</div>
+<footer style="text-align:center; margin-top:60px; padding:20px; font-size:14px; color:#0ff;">
+  <p>© STERNEFM Galaxy – Nadajemy z pokładu statku STERNE ONE</p>
+  <p><a href="index.html">🔙 Powrót na stronę główną</a></p>
+  <p>Transmisja wspierana przez SHOUTcast & Listen2MyRadio</p>
+<div style="text-align:center; margin-top:40px;">
+  <h2>🧭 Szybka Nawigacja Planetarna</h2>
+  <a href="mars.html">🔥 Mars</a> |
+  <a href="wenus.html">💫 Wenus</a> |
+  <a href="jowisz.html">🌟 Jowisz</a> |
+  <a href="saturn.html">🪐 Saturn</a> |
+  <a href="pluton.html">❄️ Pluton</a> |
+  <a href="ksiezyc.html">🌕 Księżyc</a> |
+  <a href="slonce.html">☀️ Słońce</a> |
+  <a href="ramowka.html">📅 Ramówka</a> |
+  <a href="pozdrowienia.html">💬 Pozdrowienia</a>
+</div>
+</footer>
+
+</body>
+</html>
 
 
 
