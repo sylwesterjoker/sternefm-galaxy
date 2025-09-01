@@ -27,6 +27,25 @@
       from { background-position: 0 0; }
       to { background-position: -5000px 5000px; }
     }
+    .starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -2;
+      background: transparent;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #0ff;
+      animation: fly 5s linear infinite;
+    }
+    @keyframes fly {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
     header, section {
       padding: 40px 20px;
       max-width: 800px;
@@ -132,104 +151,28 @@
     function activateNova() {
       document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
     }
+    window.onload = function() {
+      const visitKey = 'sternefm-visits';
+      let visits = localStorage.getItem(visitKey);
+      visits = visits ? parseInt(visits) + 1 : 1;
+      localStorage.setItem(visitKey, visits);
+      document.getElementById('visit-count').innerText = visits;
+    }
   </script>
 </head>
-<body><section class="section-box">
-  <h2>📬 Skontaktuj się z nami</h2>
-  <form id="contact-form">
-    <label for="name">Imię:</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="message">Wiadomość:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-
-    <button class="send" type="submit">🚀 Wyślij wiadomość</button>
-  </form>
-  <p id="form-response" style="margin-top:10px;"></p>
-</section>
-
-<section class="section-box">
-  <h2>💬 Czat pokładowy</h2>
-  <iframe class="chat" src="https://www3.cbox.ws/box/?boxid=3529634&boxtag=Jv7gkA" allowtransparency="yes"></iframe>
-</section>
-
-<section class="section-box">
-  <h2>👨‍🚀 Licznik odwiedzin</h2>
-  <p>Odwiedziny: <span id="visit-count">0</span></p>
-</section>
-
-<script>
-  // Obsługa formularza kontaktowego
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.getElementById('form-response').innerText = "✅ Wiadomość została wysłana! Dziękujemy za kontakt.";
-    this.reset();
-  });
-
-  // Licznik odwiedzin (symulacja z localStorage)
-  const visitKey = 'sternefm-visits';
-  let visits = localStorage.getItem(visitKey);
-  visits = visits ? parseInt(visits) + 1 : 1;
-  localStorage.setItem(visitKey, visits);
-  document.getElementById('visit-count').innerText = visits;
-</script>
-
- <div class="stars"></div>
-
-  <!-- Planety w tle -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" style="position: fixed; bottom: 50px; left: 50px; width: 120px; opacity: 0.6; z-index: -1;" alt="Ziemia">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" style="position: fixed; top: 100px; right: 60px; width: 140px; opacity: 0.5; z-index: -1;" alt="Jowisz">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" style="position: fixed; top: 300px; left: 100px; width: 100px; opacity: 0.5; z-index: -1;" alt="Mars">
-
-  <header>
-    <h1>STERNE FM 🚀</h1>
-    <p>🎙️ Transmisja z pokładu statku – STERNE ONE</p>
-    <p><strong>🌌 Zabieramy Was w inny wymiar kosmosu – pełen dźwięku, emocji i gwiezdnych inspiracji.</strong></p>
-  </header>
-
-  <section class="hud">
-    <!-- Odtwarzacz przez iframe -->
-    <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
-
-    <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
-    <div class="transmission" id="transmission">
-      📡 „Załoga STERNE ONE, przygotować się do skoku w hiperprzestrzeń. Mgławica inspiracji przed nami.”
-    </div>
-    <button class="button" onclick="activateWarp()">⚡ Silniki warp</button>
-    <button class="button" onclick="scanSector()">🔍 Skanuj sektor</button>
-    <button class="button" onclick="enterDimension()">🌀 Wymiar 6</button>
-    <button class="button" onclick="activateSupernova()">🌟 Supernova</button>
-    <button class="button" onclick="activateNova()">🛰️ Transmisja Nova</button>
-    <p><a href="https://sternefm.radio12345.com" target="_blank">🌐 Odtwarzacz SSL – STERNEFM</a></p>
-    <p><a href="http://uk5freenew.listen2myradio.com:14487/index.html" target="_blank">📊 Panel SHOUTcast – statystyki serwera</a></p>
-  </section>
-<section class="section-box">
-  <h2>🌌 Podróż przez Wszechświat</h2>
-  <p>Wszechświat to nieskończona przestrzeń pełna cudów, tajemnic i ekstremalnych zjawisk. Od narodzin gwiazd w mgławicach po śmierć w postaci supernowych — każda sekunda to kosmiczny spektakl.</p>
-
-  <h3>🌠 Droga Mleczna</h3>
-  <p>Nasza galaktyka zawiera ponad 100 miliardów gwiazd, w tym Słońce. Jej spiralna struktura rozciąga się na ponad 100 000 lat świetlnych.</p>
-
-  <h3>🕳️ Czarne dziury</h3>
-  <p>To obiekty o tak silnej grawitacji, że nic — nawet światło — nie może się z nich wydostać. W centrum Drogi Mlecznej znajduje się Sagittarius A*, supermasywna czarna dziura.</p>
-
-</section>
-</body>
-</html></section>
-
-<section class="section-box">
-  <h2>📡 Kontakt z załogą</h2>
-  <p>Masz pytania, pomysły lub chcesz dołączyć do naszej misji? Wyślij wiadomość!</p>
-  <form>
-    <input type="text" placeholder="Twoje imię" required />
-    <input type="email" placeholder="Twój e-mail" required />
-    <textarea placeholder="Wiadomość dla załogi" rows="5" required></textarea>
-    <button class="send" type="submit">🚀 Wyślij wiadomość</button>
-  </form>
-</section>
+<body>
+  <div class="stars"></div>
+  <div class="starfield" id="starfield"></div>
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * -100 + 'vh';
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.getElementById('starfield').appendChild(star);
+    }
+  </script>
 
     <
 
