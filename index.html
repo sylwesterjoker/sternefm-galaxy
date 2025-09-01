@@ -43,11 +43,6 @@
       border-radius: 10px;
       text-align: center;
     }
-    audio {
-      width: 100%;
-      margin-top: 10px;
-      border-radius: 10px;
-    }
     .live-indicator {
       background-color: red;
       color: white;
@@ -121,6 +116,23 @@
       cursor: pointer;
     }
   </style>
+  <script>
+    function activateWarp() {
+      document.getElementById('transmission').innerText = "⚡ Silniki warp aktywne. Przekraczamy prędkość światła!";
+    }
+    function scanSector() {
+      document.getElementById('transmission').innerText = "🔍 Skanowanie sektora... Wykryto sygnały kreatywności!";
+    }
+    function enterDimension() {
+      document.getElementById('transmission').innerText = "🌀 Wchodzimy w wymiar 6. Czasoprzestrzeń zniekształcona.";
+    }
+    function activateSupernova() {
+      document.getElementById('transmission').innerText = "🌟 Supernova wybuchła! Fale inspiracji rozchodzą się po pokładzie.";
+    }
+    function activateNova() {
+      document.getElementById('transmission').innerText = "🛰️ Transmisja Nova rozpoczęta. Nadajemy do wszystkich układów.";
+    }
+  </script>
 </head>
 <body>
   <div class="stars"></div>
@@ -137,14 +149,8 @@
   </header>
 
   <section class="hud">
-    <!-- Odtwarzacz SSL -->
-    <div style="margin-top: 20px;">
-      <audio controls autoplay style="width: 100%; border-radius: 10px;">
-        <source src="https://uk5freenew.listen2myradio.com:14487/stream" type="audio/mpeg">
-        Twoja przeglądarka nie obsługuje odtwarzacza audio. Możesz słuchać przez
-        <a href="https://sternefm.radio12345.com" target="_blank">zewnętrzny odtwarzacz SSL</a>.
-      </audio>
-    </div>
+    <!-- Odtwarzacz przez iframe -->
+    <iframe src="https://sternefm.radio12345.com" width="100%" height="150" frameborder="0" allow="autoplay"></iframe>
 
     <p class="live-indicator">🔴 LIVE – Nadajemy z orbity kreatywności</p>
     <div class="transmission" id="transmission">
@@ -162,32 +168,14 @@
   <section class="section-box">
     <h2>🧠 Ciekawostki o kosmosie</h2>
     <ul>
-      <li>🌌 W Drodze Mlecznej znajduje się ponad 100 miliardów gwiazd.</li>
-      <li>🪐 Na Jowiszu dzień trwa tylko 10 godzin.</li>
-      <li>🚀 Voyager 1 to najdalej oddalony obiekt stworzony przez człowieka.</li>
-      <li>🌠 Gwiazdy, które widzimy nocą, mogą już nie istnieć – ich światło podróżuje miliony lat.</li>
-    </ul>
-  </section>
-
-  <section class="section-box">
-    <h2>💬 Czat dla słuchaczy</h2>
-    <iframe class="chat" src="https://sternenfm.chatango.com"></iframe>
-  </section>
-
-  <section class="section-box">
-    <h2>📨 Wyślij pozdrowienia</h2>
-    <form onsubmit="event.preventDefault(); alert('Pozdrowienie wysłane!');">
-      <input type="text" placeholder="Twoje imię lub pseudonim" required />
-      <textarea rows="4" placeholder="Treść pozdrowienia..." required></textarea>
-      <button class="send" type="submit">Wyślij pozdrowienie 🚀</button>
-    </form>
-  </section>
-
-  <section class="section-box">
-    <h2>📅 Ramówka audycji</h2>
-    <ul>
-      <li><strong>18:00</strong> – Start transmisji LIVE</li>
-      <li><strong>19
+      <li>🌌 Droga Mleczna zawiera ponad 100 miliardów gwiazd.</li>
+      <li>🪐 Jowisz jest największą planetą Układu Słonecznego.</li>
+      <li>🌠 Supernowe to eksplozje umierających gwiazd, widoczne z milionów lat świetlnych.</li>
+      <li>🕳️ Czarne dziury pochłaniają wszystko, nawet światło — w centrum naszej galaktyki znajduje się Sagittarius A*.</li>
+      <li>🌙 Księżyc Europy może mieć ocean pod lodową powierzchnią — możliwe miejsce życia.</li>
+      <li>🛰️ Galaktyka Andromedy zbliża się do nas z prędkością 300 km/s.</li>
+      <li>🌌 Mgławica Oriona to miejsce narodzin nowych gwiazd.</li>
+      <li>🚀 Voyager
 
 
 
